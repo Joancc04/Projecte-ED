@@ -12,7 +12,7 @@ import sys
 import numpy    #  installed in anaconda by default
 import uuid
 import eyed3    #  $ pip install eyed3
-import vlc      #  $ pip install python-vlc
+import vlc    #  $ pip install python-vlc
 import time
 
 
