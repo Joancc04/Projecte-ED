@@ -22,7 +22,7 @@ import os.path
 #ROOT_DIR = "/Users/usuari/_uab/ed/mp3-corpus"   # MacOS
 #
 #############################################################################
-ROOT_DIR = r"E:\_UAB\ED\MP3-CORPUS"
+ROOT_DIR = r"C:\Users\adria\Desktop\2ndo\Estructures de dades\Projecte\Projecte-ED"
 
 #############################################################################
 #
@@ -41,7 +41,7 @@ MP3_DEFAULT = "Scott_Holmes_-_07_-_Inspirational_Outlook.mp3"
 #PLAY_MODE = 2  # Només reproduïr so
 #
 #############################################################################
-PLAY_MODE = 1
+PLAY_MODE = 0
 
 #############################################################################
 #
