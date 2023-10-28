@@ -1,39 +1,27 @@
-import os, sys
-ROOT_DIR = "C:\\Users\\joanc\\OneDrive\\Escritorio\\Projecte-ED"
-    
-def trobar_mp3(root_dir: str):
-    l_mp3_dirs: list = []  # Llista per emmagatzemar els camins als arxius MP3
-    for directory, _, files in os.walk(root_dir):
-        for file in files:
-            if file.endswith(".mp3"): l_mp3_dirs.append(directory + os.sep + file)
-    return l_mp3_dirs
+import os
 
-print(sys.version)
-print("aaa2", trobar_mp3(ROOT_DIR))
+#ROOT_DIR = "C:\\Users\\joanc\\OneDrive\\Escritorio\\Projecte-ED"
 
 class MusicFiles():
-    def __init__(ROOT_DIR, self):
+    def __init__(self, ROOT_DIR):
         self._RD: str = ROOT_DIR
         self._files: list = []
         self._added: list = []
         self._removed: list = []
 
-    def reload_fs(self, path: str):
-        new_files: set = {}
+    def reload_fs(self, path: str = None):
+        new_files: set = set()
+        if path is None: path = self._RD
         for directory, _, files in os.walk(path):
             for file in files:
                 if file.endswith(".mp3"): 
                     new_files.add(directory + os.sep + file)
-        if new_files != self._files:
+        if new_files != self._files and self._files:
             self._added = list(new_files - set(self._files))
             self._removed = list(set(self._files) - new_files)
-            self._removed = [file for file in self._files if file not in new_files]
-        
 
-    def files_added() -> list:
-        return 
-
-    def files_removed() -> list: ...
-    
-    ROOT_DIR = property(lambda self: self._RD, lambda self, new_rd: setattr(self, "_RD", new_rd))
     files = property(lambda self: self._files)
+    files_added = property(lambda self: self._added)
+    files_removed = property(lambda self: self._removed)
+
+#mf = MusicFiles(ROOT_DIR)
