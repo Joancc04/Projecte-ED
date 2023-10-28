@@ -2,19 +2,19 @@
 """
 test-mp3.py : Script de proves per reproduïr MP3
 """
-import cfg  # Necessari per a la pràctica !!
+import cfg_joan  # Necessari per a la pràctica !!
             # Mireu el contingut de l'arxiu
 import os.path
 import sys
 import numpy # installed in anaconda by default
 import uuid
 import eyed3 # $ pip install eyed3
-import vlc # $ pip install python-vlc
+# import vlc # $ pip install python-vlc
 import time
 
 # STEP 1: Cerca dels arxius al filesystem
-print("Cercant arxius dins [" + cfg.get_root() + "]\n")
-uri_file = cfg.get_one_file() # Aquesta funció és només de proves!
+print("Cercant arxius dins [" + cfg_joan.get_root() + "]\n")
+uri_file = cfg_joan.get_one_file() # Aquesta funció és només de proves!
 if not os.path.isfile(uri_file):
     print("ERROR: Arxiu MP3 inexistent!")
     sys.exit(1)
@@ -34,7 +34,7 @@ except:
     genre = "None"
     
 # STEP 3: Generació del identificador únic
-name_file = cfg.get_canonical_pathfile(uri_file)
+name_file = cfg_joan.get_canonical_pathfile(uri_file)
 mp3_uuid = uuid.uuid5(uuid.NAMESPACE_URL, name_file)
 
 # STEP 4: Reproducció
@@ -47,8 +47,8 @@ print(" Gènere: {}".format(genre))
 print(" UUID: {}".format(mp3_uuid))
 print(" Arxiu: {}".format(name_file))
 
-player = vlc.MediaPlayer(uri_file)
-player.play() # Nota: Crida ASYNC !!
+# player = vlc.MediaPlayer(uri_file)
+# player.play() # Nota: Crida ASYNC !!
 # Poolling loop pel control de la reproducció
 timeout = time.time() + duration
 while True:
@@ -60,7 +60,7 @@ while True:
     else:
         break
 
-player.stop()
+# player.stop()
 
 # END
 print("\nFinal!") 

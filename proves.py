@@ -1,1 +1,4 @@
-import vlc
+l = set([1, 2, 3, 4, 5, 6])
+l2 = set([2, 3, 4, 12])
+
+print(l - l2)
