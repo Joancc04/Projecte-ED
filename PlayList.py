@@ -17,17 +17,20 @@ class PlayLists:
                 if line[0] != '#' and line[-4:] == '.mp3' and os.path.exists(line): 
                     self._musicID.generate_uuid(line)
 
+
+
+
     def play(self):
-        mode = input('''
+        mode = int(input('''
 mode : 0 printem cançó per pantalla
 mode : 1 printem cançó i fem play
 mode : 2 play de la cançó però no print
-                     Escriu l'opció: ''')
+                     Escriu l'opció: '''))
         # uuid_list --> dict(path: UUID)
         for _, uuid in self._musicID.uuid_list:
             self._musicPlayer.play_song( uuid=uuid, 
                                          mode=mode )
-            print(f"Finished [{self._musicPlayer.MD.get_name(uuid)}]")
+            print(f"Finished [{self._musicPlayer.MD.get_title(uuid)}]")
 
     next_playlist = property( lambda self: self._next_playlists, 
                               lambda self, playlist: setattr(self, '_next_playlist', playlist) )

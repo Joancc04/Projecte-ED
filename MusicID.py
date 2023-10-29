@@ -1,12 +1,12 @@
 import uuid
-import cfg_diaz
+from cfg import get_canonical_pathfile
 # ==== FUNC 2 ====
 class MusicID():
     def __init__(self):
         self._uuid_list = {}
     
     def generate_uuid(self, file: str) -> str:
-        file_path_canonic = cfg_diaz.get_canonical_pathfile(file)
+        file_path_canonic = get_canonical_pathfile(file)
         mp3_uuid = str(uuid.uuid5(uuid.NAMESPACE_URL, file_path_canonic))
 
         trobat = False
@@ -15,12 +15,10 @@ class MusicID():
                 trobat = True 
                 break
                 
-        if trobat == False:
-            self._uuid_list[file] = mp3_uuid
-            print("Afegit\n")
+        if not trobat:
+            self._uuid_list[file] = mp3_uuid; print("Afegit\n")
         else:
             print("Aquest arxiu no s'utilitzarà, ja hi ha el mateix UUID en ús\n")
-            
         
     def get_uuid(self, file: str) -> str:
         try:
@@ -28,7 +26,6 @@ class MusicID():
         except:
             print("No existeix UUID per al path proporcionat\n")
             return None
-    
     
     def remove_uuid(self, uuid: str):
         eliminat = False
@@ -42,9 +39,7 @@ class MusicID():
         if not eliminat:
             print("ERROR: no s'ha trobat l'UUID a eliminar\n")
     
-    def get_path(self, uuid):
-        return [value for _, value in uuid.items() if value==uuid]
-
-    # def set_path(self, path): ...
+    # def get_path(self, uuid):
+    #     return [value for _, value in uuid.items() if value==uuid]
 
     uuid_list = property(lambda self:self._uuid_list.items())
