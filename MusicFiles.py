@@ -1,5 +1,5 @@
 import os
-
+# ==== FUNC 1 ====
 #ROOT_DIR = "C:\\Users\\joanc\\OneDrive\\Escritorio\\Projecte-ED"
 
 class MusicFiles():

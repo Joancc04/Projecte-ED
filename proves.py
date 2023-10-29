@@ -1,4 +1,6 @@
-l = set([1, 2, 3, 4, 5, 6])
-l2 = set([2, 3, 4, 12])
+import eyed3
+from cfg import get_canonical_pathfile
 
-print(l - l2)
+PATH = "Scott_Holmes_-_07_-_Inspirational_Outlook.mp3"
+metadada = eyed3.load(PATH)
+print(metadada.tag.artist)

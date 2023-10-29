@@ -1,6 +1,6 @@
 import uuid
 import cfg_diaz
-
+# ==== FUNC 2 ====
 class MusicID():
     def __init__(self):
         self._uuid_list = {}
@@ -41,3 +41,10 @@ class MusicID():
 
         if not eliminat:
             print("ERROR: no s'ha trobat l'UUID a eliminar\n")
+    
+    def get_path(self, uuid):
+        return [value for _, value in uuid.items() if value==uuid]
+
+    # def set_path(self, path): ...
+
+    uuid_list = property(lambda self:self._uuid_list)
