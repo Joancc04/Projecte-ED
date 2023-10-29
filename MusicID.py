@@ -47,4 +47,4 @@ class MusicID():
 
     # def set_path(self, path): ...
 
-    uuid_list = property(lambda self:self._uuid_list)
+    uuid_list = property(lambda self:self._uuid_list.items())

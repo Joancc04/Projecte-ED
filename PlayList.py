@@ -23,10 +23,11 @@ mode : 0 printem cançó per pantalla
 mode : 1 printem cançó i fem play
 mode : 2 play de la cançó però no print
                      Escriu l'opció: ''')
-        for song in self._musicID.uuid_list:
-            pass
-
-        MusicPlayer.play_song(uuid=None, mode=mode)
+        # uuid_list --> dict(path: UUID)
+        for _, uuid in self._musicID.uuid_list:
+            self._musicPlayer.play_song( uuid=uuid, 
+                                         mode=mode )
+            print(f"Finished [{self._musicPlayer.MD.get_name(uuid)}]")
 
     next_playlist = property( lambda self: self._next_playlists, 
                               lambda self, playlist: setattr(self, '_next_playlist', playlist) )

@@ -9,7 +9,7 @@ class MusicPlayer():
         self._mdata: MusicData = MData
     
     def print_song(self, uuid: str):
-        print(f"Reproduïnt [{self._mdata.get_arxiu(uuid)}]")
+        print(f"Reproduïnt [{self._mdata.get_name(uuid)}]")
         print(f"Duració: {self._mdata.get_duration(uuid)} segons")
         print(f"Títol: {self._mdata.get_title(uuid)}")
         print(f"Artista: {self._mdata.get_artist(uuid)}")
@@ -42,16 +42,12 @@ class MusicPlayer():
             self.print_song(uuid)
         elif mode == 1:
             self.print_song(uuid)
-            self.play_file(self._mdata.get_arxiu())
+            self.play_file(self._mdata.get_arxiu(uuid))
         elif mode == 2:
-            self.play_file(self._mdata.get_arxiu())
+            self.play_file(self._mdata.get_arxiu(uuid))
+    
+    def get_attr(self, attr):
+        pass
 
 
-    def play_song(self, uuid: str, mode: int):
-        if mode == 0:
-            self.print_song(uuid)
-        elif mode == 1:
-            self.print_song(uuid)
-            self.play_file(self._mdata.get_arxiu())
-        elif mode == 2:
-            self.play_file(self._mdata.get_arxiu())
+    MD = property(lambda self: self._mdata)
