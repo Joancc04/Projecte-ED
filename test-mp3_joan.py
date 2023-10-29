@@ -3,7 +3,7 @@
 test-mp3.py : Script de proves per reproduïr MP3
 """
 
-import cfg_joan      # Necessari per a la pràctica !!
+import cfg      # Necessari per a la pràctica !!
                 # Mireu el contingut de l'arxiu
                 # Sempre cal incloure aquest arxiu en el MAIN
 
@@ -17,8 +17,8 @@ import time
 
 
 # STEP 1: Cerca dels arxius al filesystem
-print("Cercant arxius dins [" + cfg_joan.get_root() + "]\n")
-uri_file = cfg_joan.get_one_file(0)  # Aquesta funció és només de proves!
+print("Cercant arxius dins [" + cfg.get_root() + "]\n")
+uri_file = cfg.get_one_file(0)  # Aquesta funció és només de proves!
 if not os.path.isfile(uri_file):
     print("ERROR: Arxiu MP3 inexistent!")
     sys.exit(1)
@@ -40,7 +40,7 @@ except:
 
 
 # STEP 3: Generació del identificador únic
-name_file = cfg_joan.get_canonical_pathfile(uri_file)
+name_file = cfg.get_canonical_pathfile(uri_file)
 mp3_uuid  = uuid.uuid5(uuid.NAMESPACE_URL, name_file)
 
 
