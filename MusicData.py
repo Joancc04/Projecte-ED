@@ -106,3 +106,6 @@ Gènere: {self.genre}
             print(f"[ UUID: {uuid} | file_path: {self._songs[uuid].file}]")
         except KeyError:
             print(f"ERROR: There is no song with uuid: {uuid} in the database MusicData.")
+
+    
+    songs = property(lambda self: list(self._songs.items()))

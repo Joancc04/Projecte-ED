@@ -32,9 +32,9 @@ class MusicPlayer():
             self.print_song(uuid)
         elif mode == 1:
             self.print_song(uuid)
-            self.play_file(self._MD.get_arxiu(uuid))
+            self.play_file(self._MD.get_path(uuid))
         elif mode == 2:
-            self.play_file(self._MD.get_arxiu(uuid))
-            
+            self.play_file(self._MD.get_path(uuid))
+
 
     MD = property(lambda self: self._MD)

@@ -28,10 +28,18 @@ Music_Data = MusicData(Music_ID)
 
 Music_Player = MusicPlayer(Music_Data)
 
-file = 'añlkjfñalksjdfñlaksdjf.m3u'
-PlayList( MD=Music_Data,
-         MP=Music_Player,
-         playlist_file=file )
+uuid = Music_Data.songs
+uuid = uuid[5][0]
+
+
+print(uuid)
+Music_Player.play_song(mode=2, uuid=uuid)
+
+# file = 'añlkjfñalksjdfñlaksdjf.m3u'
+# PY = PlayList( MD=Music_Data,
+#          MP=Music_Player,
+#          playlist_file=file )
+
 
 
 # MD = MusicData()
