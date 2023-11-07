@@ -1,45 +1,45 @@
 import uuid
+from MusicFiles import MusicFiles
 from cfg import get_canonical_pathfile
+
 # ==== FUNC 2 ====
 class MusicID():
     def __init__(self):
-        self._uuid_list = {}
+        self._units = {}
     
+    def initiate(self, MF: MusicFiles):
+        for file in MF.files:
+            self.generate_uuid(file)
+
     def generate_uuid(self, file: str) -> str:
-        file_path_canonic = get_canonical_pathfile(file)
-        mp3_uuid = str(uuid.uuid5(uuid.NAMESPACE_URL, file_path_canonic))
-
-        trobat = False
-        for path in self._uuid_list:
-            if str(self._uuid_list[path]) == mp3_uuid:
-                trobat = True 
-                break
-                
-        if not trobat:
-            self._uuid_list[file] = mp3_uuid; print("Afegit\n")
-        else:
-            print("Aquest arxiu no s'utilitzarà, ja hi ha el mateix UUID en ús\n")
-        
-    def get_uuid(self, file: str) -> str:
-        try:
-            return self._uuid_list[file]
-        except:
-            print("No existeix UUID per al path proporcionat\n")
-            return None
-    
+        if not self.exists_file(file):
+            mp3_uuid = str(uuid.uuid5(uuid.NAMESPACE_URL, get_canonical_pathfile(file)))
+            self._units[mp3_uuid] = file
+            print(f"\x1B[3m// Song with UUID: {mp3_uuid[:10]}... has been added\x1B[23m")
+            return mp3_uuid
+        print(f"\x1B[3m// Song with file {file} is already in the database.\x1B[23m")
+        return False
+            
     def remove_uuid(self, uuid: str):
-        eliminat = False
-        for path in self._uuid_list:
-            if str(self._uuid_list[path]) == uuid:
-                del self._uuid_list[path]
-                eliminat = True
-                print("UUID", uuid, "eliminada amb exit\n")
-                break
-
-        if not eliminat:
-            print("ERROR: no s'ha trobat l'UUID a eliminar\n")
+        try:
+            del self._units[uuid]
+        except KeyError:
+            print(f"ERROR: There is no song with UUID: {uuid} in the database")
     
-    # def get_path(self, uuid):
-    #     return [value for _, value in uuid.items() if value==uuid]
+    def remove_song(self, file):
+        song_id = self.get_uuid(file)
+        if song_id:
+            del self._units[song_id]
+        else:
+            print(f"ERROR: There is no song with file: {file} in the databse.")
 
-    uuid_list = property(lambda self:self._uuid_list.items())
+    def get_uuid(self, file: str) -> str:
+        return [uuid for uuid, d_file in self._units.items() if d_file == file][0]
+
+    def get_path(self, uuid):
+        return self._units[uuid]
+
+    def exists_file(self, file):
+        return True if file in [file for _, file in self._units.items()] else False
+    
+    items = property(lambda self:self._units.items())

@@ -8,10 +8,12 @@ class MusicFiles():
         self._files: list = []
         self._added: list = []
         self._removed: list = []
+        self.reload_fs()
 
     def reload_fs(self, path: str = None):
         new_files: set = set()
-        if path is None: path = self._ROOT_DIR
+        if path is None: 
+            path = self._ROOT_DIR
         for directory, _, files in os.walk(path):
             for file in files:
                 if file[-4:] == '.mp3': 
@@ -26,4 +28,3 @@ class MusicFiles():
     files_added = property(lambda self: self._added)
     files_removed = property(lambda self: self._removed)
 
-#mf = MusicFiles(ROOT_DIR)

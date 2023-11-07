@@ -7,15 +7,8 @@ class MusicPlayer():
         self._MD: MusicData = MData
     
     def print_song(self, uuid: str):
-        print(f"Reproduïnt [{self._MD.get_arxiu(uuid)}]")
-        print(f"Duració: {self._MD.get_duration(uuid)} segons")
-        print(f"Títol: {self._MD.get_title(uuid)}")
-        print(f"Artista: {self._MD.get_artist(uuid)}")
-        print(f"Àlbum: {self._MD.get_album(uuid)}")
-        print(f"Gènere: {self._MD.get_genre(uuid)}")
-        print(f"UUID: {uuid}")
+        self._MD.show_info(uuid)
         
-
     def play_file(self, file: str):
         player = vlc.MediaPlayer(file)
         player.play()
@@ -42,7 +35,6 @@ class MusicPlayer():
             self.play_file(self._MD.get_arxiu(uuid))
         elif mode == 2:
             self.play_file(self._MD.get_arxiu(uuid))
-    
-
+            
 
     MD = property(lambda self: self._MD)
