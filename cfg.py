@@ -23,7 +23,7 @@ import os.path
 #
 #############################################################################
 # ROOT_DIR = "C:\\Users\\joanc\\OneDrive\\Escritorio\\Projecte-ED"
-ROOT_DIR = r"C:\Users\joanc\OneDrive\Escritorio\Projecte-ED"
+ROOT_DIR = r"C:\Users\adria\Desktop\2ndo\Estructures de dades\Projecte\Projecte-ED"
 
 #############################################################################
 #

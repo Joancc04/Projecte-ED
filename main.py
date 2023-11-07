@@ -18,7 +18,7 @@ guardar les dades dins de la class MusicData NASHE
 
 '''
 # Aconseguim els paths de tots els arxius dins de ROOT_DIR
-ROOT_DIR = r"C:\Users\joanc\OneDrive\Escritorio\Projecte-ED"
+ROOT_DIR = r"C:\Users\adria\Desktop\2ndo\Estructures de dades\Projecte\Projecte-ED"
 MF = MusicFiles(ROOT_DIR)
 
 Music_ID = MusicID()
@@ -36,7 +36,7 @@ Music_Player = MusicPlayer(Music_Data)
 # Music_Player.play_song(mode=0, uuid=uuid)
 
 # file = r"C:\Users\joanc\OneDrive\Escritorio\Projecte-ED\blues.m3u"
-file = r"C:\Users\joanc\OneDrive\Escritorio\Projecte-ED\caca.m3u"
+file = r"C:\Users\adria\Desktop\2ndo\Estructures de dades\Projecte\Projecte-ED\caca.m3u"
 
 PY = PlayList( MD=Music_Data,
           MP=Music_Player,

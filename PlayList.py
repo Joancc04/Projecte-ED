@@ -21,7 +21,7 @@ class PlayList:
             file = self._file
         with open(file, 'r', encoding='UTF-8') as M3U_Playlist:
             for file in M3U_Playlist.readlines():
-                file = file.removesuffix('\n')
+                file = file.replace('\n', "")
                 if file[0] != '#' and file[-4:] == '.mp3' and self._musicData.exists_file(file): 
                     self._songs.append(self._musicData.get_uuid(file))
 
