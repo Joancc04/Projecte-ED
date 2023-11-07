@@ -22,7 +22,8 @@ import os.path
 #ROOT_DIR = "/Users/usuari/_uab/ed/mp3-corpus"   # MacOS
 #
 #############################################################################
-ROOT_DIR = "C:\\Users\\joanc\\OneDrive\\Escritorio\\Projecte-ED"
+# ROOT_DIR = "C:\\Users\\joanc\\OneDrive\\Escritorio\\Projecte-ED"
+ROOT_DIR = r"C:\Users\joanc\OneDrive\Escritorio\Projecte-ED"
 
 #############################################################################
 #
@@ -77,7 +78,7 @@ def get_canonical_pathfile(filename: str) -> str:
     """Retorna el pathname relatiu amb un format universal."""
     """Exemple: subdir1/subdir2/file01.mp3"""
     file = os.path.normpath(filename)
-    file = os.path.relpath(file, ROOT_DIR)
+    file = os.path.relpath(file, ROOT_DIR) # !!!!!
     file = file.replace(os.sep, '/')
     return  file
 

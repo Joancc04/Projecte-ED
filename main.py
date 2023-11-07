@@ -28,17 +28,21 @@ Music_Data = MusicData(Music_ID)
 
 Music_Player = MusicPlayer(Music_Data)
 
-uuid = Music_Data.songs
-uuid = uuid[5][0]
+# uuid = Music_Data.songs
+# uuid = uuid[5][0]
 
 
-print("UUID:", uuid)
-Music_Player.play_song(mode=2, uuid=uuid)
+# print("UUID:", uuid)
+# Music_Player.play_song(mode=0, uuid=uuid)
 
-# file = 'añlkjfñalksjdfñlaksdjf.m3u'
-# PY = PlayList( MD=Music_Data,
-#          MP=Music_Player,
-#          playlist_file=file )
+# file = r"C:\Users\joanc\OneDrive\Escritorio\Projecte-ED\blues.m3u"
+file = r"C:\Users\joanc\OneDrive\Escritorio\Projecte-ED\caca.m3u"
+
+PY = PlayList( MD=Music_Data,
+          MP=Music_Player,
+          playlist_file=file )
+PY.load_file()
+PY.play()
 
 
 

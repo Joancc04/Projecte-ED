@@ -1,4 +1,6 @@
 import os
+from cfg import get_canonical_pathfile
+
 # ==== FUNC 1 ====
 #ROOT_DIR = "C:\\Users\\joanc\\OneDrive\\Escritorio\\Projecte-ED"
 
@@ -17,7 +19,7 @@ class MusicFiles():
         for directory, _, files in os.walk(path):
             for file in files:
                 if file[-4:] == '.mp3': 
-                    new_files.add(directory + os.sep + file)
+                    new_files.add(get_canonical_pathfile(directory + '\\' + file))
         if not self._files: 
             self._files = new_files
         elif new_files != self._files:

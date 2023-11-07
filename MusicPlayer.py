@@ -12,8 +12,9 @@ class MusicPlayer():
     def play_file(self, file: str):
         player = vlc.MediaPlayer(file)
         player.play()
-        
-        timeout = time() + self._MD.get_duration(self._MD.get_uuid(file)[0])
+        timeout = time() + self._MD.get_attribute( uuid=self._MD.get_uuid(file),
+                                                    attribute_name='duration')
+
         while True:
             if time() < timeout:
                 try:

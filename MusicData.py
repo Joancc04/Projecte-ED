@@ -95,10 +95,10 @@ Gènere: {self.genre}
         return self._Music_ID.get_uuid(file)
 
     def get_path(self, uuid):
-        self._Music_ID.get_path(uuid)
+        return self._Music_ID.get_path(uuid)
     
     def exists_file(self, given_file):
-        return True if given_file in [song.file for song in self._songs] else False
+        return True if given_file in [song.file for _, song in self._songs.items()] else False
 
     def show_info(self, uuid):
         try:

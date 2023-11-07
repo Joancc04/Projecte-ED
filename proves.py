@@ -18,6 +18,17 @@ from time import time, sleep
 #         break
 # player.stop()
 # input("asdfasdf")
+from cfg import get_canonical_pathfile
+import vlc
+import os
+import sys
 
-if 5 >> 4:
-    print("hola")
+whereami = os.getcwd()
+for directory, _, files in os.walk(whereami):
+    print(get_canonical_pathfile(directory))
+
+
+
+# file = r"C:\Users\joanc\OneDrive\Escritorio\Projecte-ED\installers\classical.mp3"
+# cum = vlc.MediaPlayer(file)
+# cum.play()
