@@ -4,19 +4,15 @@ from MusicID import MusicID
 
 # ==== FUNC 6 ====
 class SearchMetadata():
-    def __init__(self, M_ID, MD):
-        self._musicID: MusicID = M_ID
+    def __init__(self, MD):
         self._musicData: MusicData = MD
     
-    def browser(self, key: str, sub: str):
-        uuids_retorn = []
-        for uuid in self._MusicID._uuid_list.values():
-            if self._MusicData._songs[uuid]._data[key].find(sub) != -1:
-                uuids_retorn.append(uuid)
-                
-        if len(uuids_retorn) > 0:
+    def browser(self, key: str, sub: str) -> list:
+        uuids_retorn: list = []       
+        uuids_retorn = [uuid for uuid, _ in self._musicData if self._musicData.get_attribute(uuid, key).find(sub) != -1]
+        if uuids_retorn:
             return uuids_retorn
-        return "No s'ha trobat cap resultat amb els criteris especificats"
+        print("No results found with the given key.")
     
     def title(self, sub: str) -> list:
         return self.browser('title', sub)
@@ -33,7 +29,6 @@ class SearchMetadata():
     def and_operator(self, list1: list, list2: list) -> list:                
         return [uuid for uuid in list1 if uuid in list2]
     
-    def or_operator(self, list1: list, list2: list) -> list:
-        or_uuids1 = [uuid for uuid in list1 if uuid not in list2]       
-        or_uuids2 = [uuid for uuid in list2 if uuid not in list1]     
-        return or_uuids1 + or_uuids2
+    def or_operator(self, list1: list, list2: list) -> list:  
+        return [uuid for uuid in list1 if uuid not in list2] + \
+            [uuid for uuid in list2 if uuid not in list1] 

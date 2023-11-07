@@ -22,8 +22,8 @@ import os.path
 #ROOT_DIR = "/Users/usuari/_uab/ed/mp3-corpus"   # MacOS
 #
 #############################################################################
-# ROOT_DIR = "C:\\Users\\joanc\\OneDrive\\Escritorio\\Projecte-ED"
-ROOT_DIR = r"C:\Users\adria\Desktop\2ndo\Estructures de dades\Projecte\Projecte-ED"
+ROOT_DIR = r"C:\Users\joanc\OneDrive\Escritorio\Projecte-ED"
+# ROOT_DIR = r"C:\Users\adria\Desktop\2ndo\Estructures de dades\Projecte\Projecte-ED"
 
 #############################################################################
 #

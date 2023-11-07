@@ -36,7 +36,6 @@ class MusicData:
         genre = property(lambda self: self._data['genre'])
         duration = property(lambda self: self._data['duration'])
         song_properties = property(lambda self: self._data)
-        # file = property(lambda self: self._data['file'])
     
     class Song(Song_Meta):
         def __init__(self, file: str, uuid: str):
