@@ -1,15 +1,13 @@
-import os
 from cfg import get_canonical_pathfile
+import os
 
 # ==== FUNC 1 ====
-#ROOT_DIR = "C:\\Users\\joanc\\OneDrive\\Escritorio\\Projecte-ED"
-
 class MusicFiles():
     def __init__(self, ROOT_DIR):
         self._ROOT_DIR: str = ROOT_DIR
+        self._removed: list = []
         self._files: list = []
         self._added: list = []
-        self._removed: list = []
         self.reload_fs()
 
     def reload_fs(self, path: str = None):

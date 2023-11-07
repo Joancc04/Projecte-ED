@@ -1,27 +1,21 @@
 from MusicPlayer import MusicPlayer
 from MusicData import MusicData
 
-import os
-from time import time
-
 # ==== FUNC 5 & 7 ====
-
 class PlayList:
-    def __init__(self, MP, MD, playlist_file):
-        self._musicPlayer: MusicPlayer = MP
-        self._musicData: MusicData = MD
-        self._songs: list = []
+    def __init__(self, MP: MusicPlayer, playlist_file: str):
         self._next_playlist: PlayList = None
+        self._musicPlayer: MusicPlayer = MP
+        self._musicData: MusicData = self._musicPlayer.MD
         self._file = playlist_file
+        self._songs: list = []
         
-        
-
     def load_file(self, file: str = None):
         if file is None: 
             file = self._file
         with open(file, 'r', encoding='UTF-8') as M3U_Playlist:
             for file in M3U_Playlist.readlines():
-                file = file.replace('\n', "")
+                file = file.replace('\n', '')
                 if file[0] != '#' and file[-4:] == '.mp3' and self._musicData.exists_file(file): 
                     self._songs.append(self._musicData.get_uuid(file))
 

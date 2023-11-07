@@ -1,7 +1,8 @@
-from time import time, sleep
 from MusicData import MusicData
+from time import time, sleep
 import vlc
 
+# ==== FUNC 4 ====
 class MusicPlayer(): 
     def __init__(self, MData):
         self._MD: MusicData = MData
@@ -36,6 +37,5 @@ class MusicPlayer():
             self.play_file(self._MD.get_path(uuid))
         elif mode == 2:
             self.play_file(self._MD.get_path(uuid))
-
 
     MD = property(lambda self: self._MD)

@@ -1,8 +1,9 @@
-from MusicFiles import MusicFiles
-from MusicID import MusicID
-from MusicData import MusicData
+from SearchMetadata import SearchMetadata
 from MusicPlayer import MusicPlayer
+from MusicFiles import MusicFiles
+from MusicData import MusicData
 from PlayList import PlayList
+from MusicID import MusicID
 
 
 '''
@@ -27,30 +28,13 @@ Music_ID.initiate(MF)
 Music_Data = MusicData(Music_ID)
 
 Music_Player = MusicPlayer(Music_Data)
+file = r"C:\Users\joanc\OneDrive\Escritorio\Projecte-ED\blues.m3u"
+# file = r"C:\Users\joanc\OneDrive\Escritorio\Projecte-ED\caca.m3u"
 
+# PY = PlayList( MP=Music_Player,
+#           playlist_file=file )
+# PY.load_file()
+# PY.play()
 
-
-# file = r"C:\Users\joanc\OneDrive\Escritorio\Projecte-ED\blues.m3u"
-file = r"C:\Users\joanc\OneDrive\Escritorio\Projecte-ED\caca.m3u"
-
-PY = PlayList( MD=Music_Data,
-          MP=Music_Player,
-          playlist_file=file )
-PY.load_file()
-PY.play()
-
-
-
-# MD = MusicData()
-# M_ID = MusicID()
-
-# for path in MF.files:
-#     M_ID.generate_uuid(path)
-# # M_id.uuid_list = {path: uuid}
-
-
-    
-# music_p = MusicPlayer(MD)
-# playlist = PlayLists(M_ID, music_p)
-# playlist.play()
-# input()
+searcher = SearchMetadata(Music_Data)
+searcher.genre('pop')

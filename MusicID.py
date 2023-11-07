@@ -1,6 +1,6 @@
-import uuid
-from MusicFiles import MusicFiles
 from cfg import get_canonical_pathfile
+from MusicFiles import MusicFiles
+import uuid
 
 # ==== FUNC 2 ====
 class MusicID():
@@ -11,7 +11,7 @@ class MusicID():
         for file in MF.files:
             self.generate_uuid(file)
 
-    def generate_uuid(self, file: str) -> list | bool: # ******************************************************
+    def generate_uuid(self, file: str) -> list | bool:
         if not self.exists_file(file):
             mp3_uuid = str(uuid.uuid5(uuid.NAMESPACE_URL, get_canonical_pathfile(file)))
             self._units[mp3_uuid] = file
@@ -36,10 +36,10 @@ class MusicID():
     def get_uuid(self, file: str) -> str:
         return [uuid for uuid, d_file in self._units.items() if d_file == file][0]
 
-    def get_path(self, uuid: str):
+    def get_path(self, uuid: str) -> str:
         return self._units[uuid]
 
-    def exists_file(self, file: str):
+    def exists_file(self, file: str) -> bool:
         return True if file in [file for _, file in self._units.items()] else False
     
-    items = property(lambda self:self._units.items())
+    items = property(lambda self: self._units.items())
