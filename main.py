@@ -32,7 +32,7 @@ uuid = Music_Data.songs
 uuid = uuid[5][0]
 
 
-print(uuid)
+print("UUID:", uuid)
 Music_Player.play_song(mode=2, uuid=uuid)
 
 # file = 'añlkjfñalksjdfñlaksdjf.m3u'
