@@ -17,7 +17,7 @@ class SearchMetadata():
         self.return_w_info(self.browser('title', sub), sub, 'title')
                   
     def artist(self, sub: str):
-        self.return_w_info(self.browser('artist', sub, sub, 'artist')) 
+        self.return_w_info(self.browser('artist', sub), sub, 'artist')
     
     def album(self, sub: str):
         self.return_w_info(self.browser('album', sub), sub, 'album')
