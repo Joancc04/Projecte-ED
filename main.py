@@ -56,10 +56,10 @@ ROOT_DIR = cfg.get_root()
 !!!!!!!!!!!
 Important posar el path de l'arxiu M3U per tal de que funcioni tot el relacionat amb la 
 classe PlayList
+'''
 M3U_FILE = r"C:\Users\joanc\OneDrive\Escritorio\Projecte-ED\blues.m3u"
 # M3U_FILE = r"C:\Users\joanc\OneDrive\Escritorio\Projecte-ED\Prova_playlist.m3u"
-'''
-M3U_FILE = r''
+
 
 #Inicialitzem MusicFiles amb el ROOT_DIR
 MF = MusicFiles(ROOT_DIR)

@@ -1,6 +1,7 @@
 from MusicData import MusicData
 from time import time, sleep
-import vlc
+#import vlc
+import cfg
 
 # ==== FUNC 4 ====
 class MusicPlayer(): 
@@ -10,23 +11,8 @@ class MusicPlayer():
     def print_song(self, uuid: str):
         self._MD.show_info(uuid)
         
-    def play_file(self, file: str):
-        player = vlc.MediaPlayer(file)
-        player.play()
-        timeout = time() + self._MD.get_attribute( uuid=self._MD.get_uuid(file),
-                                                    attribute_name='duration')
-
-        while True:
-            if time() < timeout:
-                try:
-                    sleep(1)
-                except KeyboardInterrupt: # STOP amb <CTRL>+<C> a la consola
-                    break
-            else:
-                break
-    
-        player.stop()
-        print("\nFinal!") 
+    def play_file(self, ff):
+        pass
 
 
     def play_song(self, uuid: str, mode: int):
@@ -37,5 +23,6 @@ class MusicPlayer():
             self.play_file(self._MD.get_path(uuid))
         elif mode == 2:
             self.play_file(self._MD.get_path(uuid))
+            a = 1
 
     MD = property(lambda self: self._MD)

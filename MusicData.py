@@ -1,8 +1,10 @@
-from cfg import get_canonical_pathfile
+import cfg
 from MusicID import MusicID
 import eyed3
 import numpy
 import sys
+import os
+
 
 # ==== FUNC 3 ====
 class MusicData:
@@ -11,7 +13,7 @@ class MusicData:
             self._data: dict = {}
             
         def load_MetaData(self, file: str):
-            metadata = eyed3.load(get_canonical_pathfile(file))
+            metadata = eyed3.load(cfg.get_canonical_pathfile(file))
             if metadata is None:
                 print("ERROR: Arxiu MP3 erroni!")
                 sys.exit(1)
@@ -54,24 +56,20 @@ Gènere: \t{self.genre}
         file = property(lambda self: self._file)
     # ________________FI DE SUBLCLASSES_____________________________________________________________________
 
-    def __init__(self, MID: MusicID = None):
+    def __init__(self):
         self._songs: dict = {}
-        self._Music_ID: MusicID = MID
-        self.load_data()
 
-    def add_song(self, file_path: str, uuid: str = None):
-        if uuid is not None and uuid not in self._songs:
+    def add_song(self, uuid: str, file_path: str = None):
+        if os.path.exists(file_path):
             self._songs[uuid] = self.Song( file=file_path,
                                            uuid=uuid )
-        elif not uuid:
-            print(f"Song with path {file_path} is already in the database MUSIC_ID.")
         else:
-            generated_uuid = self._Music_ID.generate_uuid(file_path)
-            self.add_song(file_path=file_path, uuid=generated_uuid)
+            print("FAKEEEEE")
+        
     
-    def load_data(self):
-        for uuid, file_path in self._Music_ID.items:
-            self.add_song(uuid=uuid, file_path=file_path)
+    def load_metadata(self, uuid):
+       pass
+   # ********
     
     def remove_song(self, uuid: str):
         try: 
@@ -79,21 +77,54 @@ Gènere: \t{self.genre}
         except: 
             print("UUID given does not exist")
     
-    def get_attribute(self, uuid: str, attribute_name: str) -> str:
-        song = self._songs.get(uuid, None)
-        if song:
-            return getattr(song, attribute_name)
+        
+    def get_title(self, uuid):
+        try:
+            song = self._songs[uuid]
+        except Exception:
+            return None
         else:
-            print("UUID given does not exist")
-            return 'No_songs_found'
-
+            return song.title
+    
+    def get_album(self, uuid):
+        try:
+            song = self._songs[uuid]
+        except Exception:
+            return None
+        else:
+            return song.album
+    
+    def get_artist(self, uuid):
+        try:
+            song = self._songs[uuid]
+        except Exception:
+            return None
+        else:
+            return song.artist
+    
+    def get_genre(self, uuid):
+        try:
+            song = self._songs[uuid]
+        except Exception:
+            return None
+        else:
+            return song.genre
+    
+    def get_filename(self, uuid):
+        try:
+            song = self._songs[uuid]
+        except Exception:
+            return None
+        else:
+            return song.file
+    
     def show_info(self, uuid: str):
         try:
             self._songs[uuid].print()
-            print(f"[ UUID: {uuid[:11]}... | file_path: {self._songs[uuid].file}]")
+            #print(f"[ UUID: {uuid[:11]}... | file_path: {self._songs[uuid].file}]")
         except KeyError:
-            print(f"ERROR: There is no song with uuid: {uuid} in the database MusicData.")
-
+            return None
+            
     def get_uuid(self, file: str) -> str:
         return self._Music_ID.get_uuid(file)
 
@@ -102,5 +133,9 @@ Gènere: \t{self.genre}
     
     def exists_file(self, given_file: str) -> bool:
         return True if given_file in [song.file for _, song in self._songs.items()] else False
-
+    
+    def __len__(self):
+        return len(self._songs.keys())
+        
+        
     songs = property(lambda self: list(self._songs.items()))
