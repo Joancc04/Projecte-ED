@@ -54,7 +54,7 @@ Gènere: \t{self.genre}
         file = property(lambda self: self._file)
     # ________________FI DE SUBLCLASSES_____________________________________________________________________
 
-    def __init__(self, MID: MusicID):
+    def __init__(self, MID: MusicID = None):
         self._songs: dict = {}
         self._Music_ID: MusicID = MID
         self.load_data()
@@ -79,7 +79,7 @@ Gènere: \t{self.genre}
         except: 
             print("UUID given does not exist")
     
-    def get_attribute(self, uuid: str, attribute_name: str) -> str | int:
+    def get_attribute(self, uuid: str, attribute_name: str) -> str:
         song = self._songs.get(uuid, None)
         if song:
             return getattr(song, attribute_name)

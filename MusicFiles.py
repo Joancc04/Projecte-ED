@@ -3,7 +3,7 @@ import os
 
 # ==== FUNC 1 ====
 class MusicFiles():
-    def __init__(self, ROOT_DIR):
+    def __init__(self, ROOT_DIR=None):
         self._ROOT_DIR: str = ROOT_DIR
         self._removed: list = []
         self._files: list = []
