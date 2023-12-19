@@ -2,9 +2,10 @@ from MusicData import MusicData
 
 # ==== FUNC 6 ====
 class SearchMetadata():
+    __slots__ = ('_musicData')
+
     def __init__(self, MD):
         self._musicData: MusicData = MD
-
 
     def title(self, sub: str):
         uuids = [uuid for uuid, _ in self._musicData.songs
@@ -54,4 +55,5 @@ class SearchMetadata():
                 out_l.append(attr_value)
             return out_l
     
-    
+    def __repr__(self):
+        return f'MusicFiles({self._musicData})'

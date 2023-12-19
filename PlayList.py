@@ -6,6 +6,8 @@ import os
 
 # ==== FUNC 5 & 7 ====
 class PlayList:
+    __slots__ = ('_musicID', '_next_playlist', '_musicPlayer', '_musicData', '_songs')
+
     def __init__(self, MI: MusicID, MP: MusicPlayer):
         print(MI, MP)
         self._musicID: MusicID = MI
@@ -48,6 +50,9 @@ class PlayList:
     
     def __len__(self):
         return len(self._songs)
+    
+    def __repr__(self):
+        return f'MusicFiles({self._songs})'
     
     next_playlist = property( lambda self: self._next_playlists, 
                               lambda self, playlist: setattr(self, '_next_playlist', playlist) )

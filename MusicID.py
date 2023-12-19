@@ -4,6 +4,8 @@ import uuid
 
 # ==== FUNC 2 ====
 class MusicID():
+    __slots__ = ('_units')
+
     def __init__(self):
         self._units = {}
 
@@ -45,4 +47,11 @@ class MusicID():
     def __len__(self):
         return len(self._units.keys())
     
+    def __repr__(self):
+        return f'MusicFiles({self._units})'
+    
+    def __iter__(self):
+        for i in self._units:
+            yield i
+
     items = property(lambda self: self._units.items())

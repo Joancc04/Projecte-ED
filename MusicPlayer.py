@@ -5,6 +5,8 @@ import cfg
 
 # ==== FUNC 4 ====
 class MusicPlayer(): 
+    __slots__ = ('_MD')
+
     def __init__(self, MData):
         self._MD: MusicData = MData
     
@@ -21,5 +23,8 @@ class MusicPlayer():
             self.play_file(self._MD.get_path(uuid))
             
     def play_file(self, file): ...
+
+    def __repr__(self):
+        return f'MusicFiles({self._MD})'
 
     MD = property(lambda self: self._MD)

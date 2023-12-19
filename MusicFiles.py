@@ -3,6 +3,8 @@ import os
 
 # ==== FUNC 1 ====
 class MusicFiles():
+    __slots__ = ('_removed', '_files', '_added')
+
     def __init__(self):
         self._removed: list = []
         self._files: list = []
@@ -26,4 +28,10 @@ class MusicFiles():
     
     def files_removed(self):
         return self._removed
+    
+    def __repr__(self):
+        return f'MusicFiles(Removed: {len(self._removed)}, Added: {len(self._added)}, Files: {len(self._files)})'
 
+    def __iter__(self):
+        for i in self._units:
+            yield i

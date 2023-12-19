@@ -62,14 +62,16 @@ M3U_FILE = r"C:\Users\joanc\OneDrive\Escritorio\Projecte-ED\blues.m3u"
 
 
 #Inicialitzem MusicFiles amb el ROOT_DIR
-MF = MusicFiles(ROOT_DIR)
+#MF = MusicFiles(ROOT_DIR)
 
 #Inicialitzem MusicID
 Music_ID = MusicID()
-Music_ID.initiate(MF)
+#Music_ID.initiate(MF)
 
 #Inicialitzem MusicData
-Music_Data = MusicData(Music_ID)
+#Music_Data = MusicData(Music_ID)
+Music_Data = MusicData()
+print(repr(Music_Data))
 
 #Inicialitzem MusicPlayer
 Music_Player = MusicPlayer(Music_Data)
