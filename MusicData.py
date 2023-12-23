@@ -9,8 +9,6 @@ import os
 # ==== FUNC 3 ====
 class MusicData:
     class Song_Meta:
-        __slots__ = ('_data')
-
         def __init__(self):
             self._data: dict = {}
             
@@ -31,7 +29,6 @@ class MusicData:
                 self._data['genre'] = "None"
             else:
                 self._data['genre'] = genre
-        
         title = property(lambda self: self._data['title'])
         artist = property(lambda self: self._data['artist'])
         album = property(lambda self: self._data['album'])
@@ -40,8 +37,6 @@ class MusicData:
         song_properties = property(lambda self: self._data)
     
     class Song(Song_Meta):
-        __slots__ = ('_file', '_uuid')
-
         def __init__(self, file: str, uuid: str):
             super().__init__()
             self._file: str = file
@@ -59,8 +54,6 @@ Gènere: \t{self.genre}
 
         file = property(lambda self: self._file)
     # ________________FI DE SUBLCLASSES_____________________________________________________________________
-
-    __slots__ = ('_songs')
 
     def __init__(self):
         self._songs: dict = {}
@@ -123,14 +116,6 @@ Gènere: \t{self.genre}
             return None
         else:
             return song.file
-        
-    def get_duration(self, uuid):
-        try:
-            song = self._songs[uuid]
-        except Exception:
-            return None
-        else:
-            return song.duration
     
     def show_info(self, uuid: str):
         try:
@@ -149,13 +134,7 @@ Gènere: \t{self.genre}
         return True if given_file in [song.file for _, song in self._songs.items()] else False
     
     def __len__(self):
-        return len(self._songs)
+        return len(self._songs.keys())
         
-    def __repr__(self):
-        return f'MusicData({self._songs})'
-    
-    def __iter__(self):
-        for i in self._songs:
-            yield i
-
+        
     songs = property(lambda self: list(self._songs.items()))
